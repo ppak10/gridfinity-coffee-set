@@ -63,20 +63,52 @@ div_base_y = 0;
 
 sugar_can_diameter = 80.50;
 
-difference() {
-    gridfinityInit(2, 2, height(6), 0, 42) {
-        cutCylinders(1, cylinder_diameter=sugar_can_diameter, orientation=90, cylinder_height=0.5, chamfer=0.5);
-    }
-    hull(){
-        translate([0, 0, 44]) cylinder(0.1, sugar_can_diameter/2, true);
-        translate([0, 0, 6]) cylinder(0.1, sugar_can_diameter/2, true);
-    }
-}
+length = 3;
+height_modifier = 17;
+
+cube_size = length * 50;
+cut_depth = 25;
+
+coffee_mate_single_diameter = 30.00;
+coffee_mate_single_cut_depth = 25.00;
+
+// translate([42, 0, 0]) gridfinityBase(1, length, 42, 0, 0, 1);
+// translate([42, 0, 0]) gridfinityInit(1, length, height(6), 0, 42);
+
+gridfinityBase(1, length, 42, 0, 0, 1);
 
 difference() {
-    gridfinityBase(2, 2, 42, 0, 0, 1);
-    hull(){
-        translate([0, 0, 44]) cylinder(0.1, sugar_can_diameter/2, true);
-        translate([0, 0, 6]) cylinder(0.1, sugar_can_diameter/2, true);
+
+  difference() {
+    gridfinityInit(1, length, height(height_modifier), 0, 42, 2);
+    hull() {
+      translate([cut_depth, -cube_size / 2, 30])
+      rotate([0, -15, 0])
+      cube([50, cube_size, cube_size]);
     }
+  }
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5, 0, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5, -42, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5, 42, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5 + 42, 0, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5 + 42, -42, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
+
+  rotate([0, 90 - 15, 0])
+  translate([-97.5 + 42, 42, 25])
+  cylinder(coffee_mate_single_cut_depth, coffee_mate_single_diameter/2, coffee_mate_single_diameter/2, true);
 }
