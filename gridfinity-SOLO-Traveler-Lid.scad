@@ -61,15 +61,15 @@ div_base_x = 0;
 // number of divisions per 1 unit of base along the Y axis. (default 1, only use integers. 0 means automatically guess the right division)
 div_base_y = 0;
 
-sugar_can_diameter = 82.50;
+diameter = 82.50;
 
 difference() {
     gridfinityInit(2, 2, height(6), 0, 42) {
-        cutCylinders(1, cylinder_diameter=sugar_can_diameter, orientation=90, cylinder_height=0.5, chamfer=0.5);
+        cutCylinders(1, cylinder_diameter=diameter, orientation=90, cylinder_height=0.5, chamfer=0.5);
     }
     hull(){
-        translate([0, 0, 44]) cylinder(0.1, sugar_can_diameter/2, true);
-        translate([0, 0, 6]) cylinder(0.1, sugar_can_diameter/2, true);
+        translate([0, 0, 44]) cylinder(0.1, diameter/2, true);
+        translate([0, 0, 6]) cylinder(0.1, diameter/2, true);
     }
     translate([25, -12.5, 0]) cube([25, 25, 50]);
     translate([-12.5, 25, 0]) cube([25, 25, 50]);
@@ -80,8 +80,8 @@ difference() {
 difference() {
     gridfinityBase(2, 2, 42, 0, 0, 1);
     hull(){
-        translate([0, 0, 44]) cylinder(0.1, sugar_can_diameter/2, true);
-        translate([0, 0, 6]) cylinder(0.1, sugar_can_diameter/2, true);
+        translate([0, 0, 44]) cylinder(0.1, diameter/2, true);
+        translate([0, 0, 6]) cylinder(0.1, diameter/2, true);
     }
     translate([25, -12.5, 6]) cube([25, 25, 50]);
     translate([-12.5, 25, 6]) cube([25, 25, 50]);
